@@ -1,0 +1,58 @@
+{
+  "name": "template-bun-ts-vite-react",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "dotenvx run --env-file=.env.development -- vite",
+    "build": "dotenvx run --env-file=.env.development tsc -b && vite build",
+    "preview": "dotenvx run --env-file=.env.development vite preview",
+    "format": "biome format --write",
+    "lint": "biome lint --write",
+    "lint:dry": "biome lint",
+    "typecheck": "tsc --noEmit --project tsconfig.json",
+    "commitlint": "commitlint --edit",
+    "preinstall": "npx only-allow bun",
+    "lint-staged": "bun exec lint-staged",
+    "env:encrypt": "dotenvx encrypt -f .env.* -fk .env",
+    "env:decrypt": "dotenvx decrypt -f .env.* -fk .env",
+    "depscheck": "knip"
+  },
+  "dependencies": {
+    "@dotenvx/dotenvx": "^1.41.0",
+    "@tailwindcss/vite": "^4.1.7",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.1.7"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "@total-typescript/ts-reset": "^0.6.1",
+    "@types/bun": "^1.2.10",
+    "@types/node": "^22.15.2",
+    "husky": "^9.1.7",
+    "knip": "^5.50.5",
+    "lint-staged": "^15.5.1",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react-swc": "^3.9.0",
+    "globals": "^16.0.0",
+    "typescript": "~5.8.3",
+    "vite": "^6.3.5"
+  },
+  "lint-staged": {
+    "*": [
+      "biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"
+    ]
+  },
+  "commitlint": {
+    "extends": ["@commitlint/config-conventional"]
+  },
+  "knip": {
+    "$schema": "https://unpkg.com/knip@5/schema.json",
+    "entry": ["src/index.ts"],
+    "project": ["**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}"]
+  }
+}

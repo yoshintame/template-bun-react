@@ -1,0 +1,6 @@
+bun run lint
+bun run typecheck
+bun run format
+bun run env:encrypt
+
+git add .env* || true

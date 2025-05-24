@@ -1,0 +1,4 @@
+bun run lint-staged
+bun run env:encrypt
+
+git add .env* || true
